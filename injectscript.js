@@ -21,5 +21,3 @@ $.get(chrome.extension.getURL('/contentscript.js'),
         document.getElementsByTagName("body")[0].appendChild(script);
     }
 );
-
-//style="height: auto; width: 300px; top: 404.5px; left: 799px;box-shadow: 0px 0px 10px #000;opacity: 0.50;"
