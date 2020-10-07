@@ -9,7 +9,7 @@ function getListSiebelInfo() { //основной метод, получает �
 	var arrCurFields = activeApplet.GetPModel().Get('GetBusComp').GetFieldMap();
 
 	var divApplets, divAllInfo, divCurrentApplet, divFieldsCurrentApplet;
-	var tableAllInfo, tableCurrentApplet, tableFieldsCurrentApplet;
+	var tableApplets, tableAllInfo, tableCurrentApplet, tableFieldsCurrentApplet;
 	var header;
 	var row;
 	var cell;
@@ -41,6 +41,27 @@ function getListSiebelInfo() { //основной метод, получает �
 	$('#_dev01').append(divCurrentApplet);
 	$('#_dev01').append(divFieldsCurrentApplet);
 
+
+
+	//--
+	//Создание табличек
+	//Все апплеты
+	/*DELETE tableApplets = document.createElement("table");
+	tableApplets.setAttribute("name", "devTableAllApplets");
+	header = tableApplets.createTHead();
+	for(var a in arrApplets){
+		theApplet = arrApplets[a];
+		row = header.insertRow(ind);  
+		ind++;	
+		cell = createCell(theApplet, arTitleApplets,row, "Applets", "");
+	}
+	row = header.insertRow("Title"); 
+	arTitleApplets.forEach(function(item, i, arTitleApplets) {
+		cell = row.insertCell(i);
+		cell.innerHTML = item;  
+		cell.setAttribute("style", "border:1px solid black;padding:3px;background-color:#dbf1da;");
+	});
+	$('#_devAppletsView').append(tableApplets);*/
 	createBlockInformation('#_devAppletsView', 'devTableAllApplets', arTitleApplets, arrApplets);
 	//Информация
 	tableAllInfo = document.createElement("table");
@@ -83,7 +104,7 @@ function getListSiebelInfo() { //основной метод, получает �
 	ind = 1;
 	//arrCurFields  = arrayUniq(arrCurFields);
 	for (var a in arrCurFields) {
-		let theField = arrCurFields[a];
+		theField = arrCurFields[a];
 		row = header.insertRow(ind);
 		cell = createCell(activeApplet, arFields, row, "Applets", a);
 		ind++;
@@ -117,7 +138,7 @@ function arrayUniq(array) {
 function createCell(obj, arrayName, row, type, field) { //универсальный метод создания ячейки записи
 	var temp;
 	arrayName.forEach(function (item, i, arrayName) {
-		let cell = row.insertCell(i);
+		cell = row.insertCell(i);
 		switch (item) {
 			case "View Name":
 				temp = obj.GetActiveView().GetName();
@@ -206,27 +227,38 @@ document.onkeydown = function (e) {
 		showPanel();
 	}
 	return true;
-};
+}
 
 
 $('#_dev00').mousedown(function (e) {
-	differenceX = e.pageX - parseInt($('#_dev00').css('left'));
-	differenceY = e.pageY - parseInt($('#_dev00').css('top'));
-	mouse_event = 1;
-});
+
+	differenceX = e.pageX - parseInt($('#_dev00').css('left'))
+
+	differenceY = e.pageY - parseInt($('#_dev00').css('top'))
+
+	mouse_event = 1
+
+})
 
 document.onmouseup = function () {
-	mouse_event = 0;
-};
+
+	mouse_event = 0
+
+}
 
 document.onmousemove = function (e) {
+
 	if (mouse_event == 1) {
-		$('#_dev00').css('left', e.pageX - differenceX);
-		$('#_dev00').css('top', e.pageY - differenceY);
+
+		$('#_dev00').css('left', e.pageX - differenceX)
+
+		$('#_dev00').css('top', e.pageY - differenceY)
+
 	}
-};
+
+}
 
 function opacityChange() {
-	let opacity = document.getElementById("dev_op").value;
+	opacity = document.getElementById("dev_op").value;
 	document.getElementById("_dev00").style.opacity = opacity / 10;
 }
