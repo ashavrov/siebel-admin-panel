@@ -1,0 +1,42 @@
+{
+  "manifest_version": 2,
+  "name": "My application",
+  "version": "0.1",
+
+  "icons": {
+    "16": "./pic/16x16.png"
+  },
+
+  "permissions": [
+    "tabs",
+    "activeTab",
+    "http://192.168.61.78/agentnewoui/*"
+  ],
+
+  "background": {
+    "page": "/html/background.html"
+  },
+  "browser_action": {
+    "default_title": "Hello",
+    "default_popup": "/html/popup.html",
+    "default_icon": "pic/16x16.png"
+  },
+  "content_scripts": [{
+    "matches": ["http://192.168.61.78/agentnewoui/*",
+      "http://192.168.61.79/agentnew/*",
+      "http://localhost/*",
+      "http://192.168.61.106/agentnew/*",
+      "http://192.168.61.78/Callcenter_oui/*",
+      "http://192.168.61.78/cc/*",
+      "http://192.168.61.78/branch/*",
+      "http://192.168.61.78/fins_rus_oui/*",
+      "http://5cd6474qgc/*",
+      "https://sbldevapp.isb/*"
+    ],
+    "js": ["jquery-1.11.3.min.js", "injectscript.js"],
+    "run_at": "document_end"
+  }],
+  "web_accessible_resources": [
+    "/html/contenthml.html", "/contentscript.js"
+  ]
+}
